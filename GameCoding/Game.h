@@ -22,9 +22,12 @@ private:
 private :
 	void CreateGeometry();
 	void CreateInputLayout();
+	void CreateVS(); // 버텍스 쉐이더 만들기
+	void CreatePS(); // 픽셀 쉐이더 만들기
 
-	void CreateVS();
-	void CreatePS();
+	void CreateSRV(); // 쉐이더 리소스 뷰 만들기
+
+	void CreateConstantBuffer();
 
 	void LoadShaderFromFile(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob>& blob);
 
@@ -40,7 +43,7 @@ private:
 	ComPtr<ID3D11DeviceContext> _deviceContext = nullptr;
 	ComPtr<IDXGISwapChain> _swapChain = nullptr;
 
-	// Render Target View
+	// Render Target View RTV
 	ComPtr<ID3D11RenderTargetView> _renderTargetView;
 
 	// Misc
@@ -51,6 +54,8 @@ private:
 	// Geometry
 	vector<Vertex> _vertices;
 	ComPtr<ID3D11Buffer> _vertexBuffer = nullptr;
+	vector<uint32> _indices;
+	ComPtr<ID3D11Buffer> _indexBuffer = nullptr;
 	ComPtr<ID3D11InputLayout> _inputLayout = nullptr;
 
 	//VS
@@ -61,7 +66,16 @@ private:
 	ComPtr<ID3D11PixelShader> _pixelShader = nullptr;
 	ComPtr<ID3DBlob> _psBlob = nullptr;
 
+	// Shader Resource View SRV
+	ComPtr<ID3D11ShaderResourceView> _shaderResourceView = nullptr;
+	ComPtr<ID3D11ShaderResourceView> _shaderResourceView2 = nullptr;
+
 	//[CPU -> RAM] [GPU -> VRAM]
 
+
+private:
+	// Scale Rotation Translation SRT
+	TransformData _transformData;
+	ComPtr<ID3D11Buffer> _constantBuffer;
 };
 
