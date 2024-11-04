@@ -9,6 +9,7 @@
 #include <list>
 #include <map>
 #include <unordered_map>
+#include <string>
 using namespace std;
 
 //WIN
@@ -33,3 +34,5 @@ using namespace Microsoft::WRL;
 #else
 #pragma comment(lib, "DirectXTex\\DirectXTex.lib")
 #endif // DEBUG
+
+#define CHECK(p)		assert(SUCCEEDED(p));
