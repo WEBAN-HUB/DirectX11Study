@@ -25,6 +25,10 @@ private :
 	void CreateVS(); // 버텍스 쉐이더 만들기
 	void CreatePS(); // 픽셀 쉐이더 만들기
 
+	void CreateRasterizerState();
+	void CreateSamplerState();
+	void CreateBlendState();
+
 	void CreateSRV(); // 쉐이더 리소스 뷰 만들기
 
 	void CreateConstantBuffer();
@@ -61,6 +65,11 @@ private:
 	//VS
 	ComPtr<ID3D11VertexShader> _vertexShader = nullptr;
 	ComPtr<ID3DBlob> _vsBlob = nullptr;
+
+	// state
+	ComPtr<ID3D11RasterizerState> _rasterizerState; 
+	ComPtr<ID3D11SamplerState> _samplerState;
+	ComPtr<ID3D11BlendState> _blendState;
 
 	//PS
 	ComPtr<ID3D11PixelShader> _pixelShader = nullptr;
